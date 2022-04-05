@@ -9,6 +9,12 @@ const DishesSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    // comments
+    comments: [{
+        name: String,
+        comment: String
+    }],
+
 });
 
 module.exports = mongoose.model('Dishes', DishesSchema);

@@ -1,0 +1,49 @@
+GET http://localhost:8000/users
+Content-Type: application/json
+
+{
+    "role":"admin"
+}
+###
+
+DELETE http://localhost:8000/dishes/624c8049a786b41a7920c455/comments
+Content-Type: application/json
+
+{
+    "name":"Opi"
+}
+
+
+###
+
+POST http://localhost:8000/dishes
+Content-Type: application/json
+
+{
+    "label":"Lemon",
+    "price":100,
+    "comments":[
+        {
+            "name":"Momen",
+            "comment":"Good"
+        },
+        {
+            "name":"Khandoker",
+            "comment":"Bad"
+        },
+        {
+            "name":"Opi",
+            "comment":"Very Good"
+        }
+    ],
+    "role":"admin"
+}
+
+###
+
+DELETE http://localhost:8000/promotions/6249d301196d027711d0539a
+Content-Type: application/json
+
+{
+    "role":"admin"
+}

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 router.use(express.json());
 const leaders = require('../models/leaders');
+const {admin,owner} = require('../middleware')
 
 router.get('/', async (req, res) => {
     try {
@@ -20,7 +21,7 @@ router.get('/:id', async (req, res) => {
         res.json({ message: err.message });
     }
 });
-router.post('/', (req, res) => {
+router.post('/', admin(["admin"]), (req, res) => {
     const leader = new leaders({
         name: req.body.name,
         image: req.body.image,
@@ -35,7 +36,7 @@ router.post('/', (req, res) => {
         res.json({ message: err.message });
     });
 });
-router.put('/:id', async (req, res) => {
+router.put('/:id', admin(["admin"]), async (req, res) => {
     try {
         const leader = await leaders.findByIdAndUpdate(req.params.id,
             {
@@ -53,7 +54,7 @@ router.put('/:id', async (req, res) => {
         res.json({ message: err.message });
     }
 });
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', admin(["admin"]), async (req, res) => {
     try {
         const leader = await leaders.findByIdAndRemove(req.params.id);
         res.json(leader);
